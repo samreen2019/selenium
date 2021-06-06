@@ -1,17 +1,17 @@
 import webdriver from 'selenium-webdriver';
 import chrome from 'chromedriver';
-from selenium.webdriver.chrome.options import Options
-chrome_options = Options()
-chrome_options.add_argument("--no-sandbox") # linux only
+
+const chromeCapabilities = webdriver.Capabilities.chrome();
+chromeCapabilities.set('chromeOptions', {args: ['--no-sandbox']});
+
 
 export const getDriver = () => {
   let driver = new webdriver.Builder()
     .forBrowser('chrome')
+    .withCapabilities(chromeCapabilities)
     .build();
-  driver = webdriver.Chrome(options=chrome_options)
   return driver;
 };
-
 
 
 
